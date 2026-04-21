@@ -1,785 +1,295 @@
 <!DOCTYPE html>
 <html lang="bg" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Български Йогурт — традиционни млечни продукти от 1993 г. 100% българско мляко. B2B доставки за магазини, ресторанти и хотели." />
-  <meta name="keywords" content="кисело мляко, сирене, кашкавал, мандра, B2B, млечни продукти, България" />
-  <meta property="og:title" content="Български Йогурт — Истинският вкус от 1993 г." />
-  <meta property="og:description" content="100% българско мляко. Традиционни рецепти. Надеждни B2B доставки." />
-  <meta property="og:type" content="website" />
-  <title>Български Йогурт — Истинският вкус. От 30 години насам.</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'royal':      '#1e3a8a',
-            'royal-dark': '#172d6e',
-            'royal-light':'#2d4fb5',
-            'gold':       '#d97706',
-            'gold-light': '#f59e0b',
-            'navy':       '#0f172a',
-          },
-          fontFamily: {
-            'serif': ['"Playfair Display"', 'Georgia', 'serif'],
-            'sans':  ['"DM Sans"', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css" />
-
-  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with real ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Всички млечни продукти на Български Йогурт — кисело мляко, сирене, кашкавал и масло. 100% българско мляко от 1993 г."/>
+  <title>Продукти — Български Йогурт</title>
+  <link rel="icon" type="image/avif" href="../assets/images/favicon.avif"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/shared.css"/>
+  <style>
+    /* Page hero */
+    .page-hero{background:var(--royal);padding:7rem 2rem 4rem;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5L35 25H55L39 37L45 57L30 45L15 57L21 37L5 25H25Z' fill='%23ffffff' opacity='.04'/%3E%3C/svg%3E");background-size:60px 60px;}
+    .page-hero-inner{max-width:1280px;margin:0 auto;position:relative;}
+    .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:white;line-height:1.1;margin:.75rem 0;}
+    .page-hero h1 span{color:var(--gold-light);}
+    .page-hero p{font-size:1.1rem;color:rgba(255,255,255,.6);max-width:50ch;margin-top:.75rem;font-weight:300;line-height:1.7;}
+    /* Overview grid */
+    .overview-bg{background:var(--bg-off);}
+    .overview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;}
+    .overview-card{border-radius:var(--r-card);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;box-shadow:var(--shadow-md);border:1px solid rgba(30,58,138,.07);background:white;transition:all .35s var(--ease);}
+    .overview-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+    .overview-card:hover .ov-img{transform:scale(1.05);}
+    .ov-img-wrap{height:100%;min-height:280px;overflow:hidden;position:relative;}
+    .ov-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+    .ov-body{padding:2.5rem 2rem;display:flex;flex-direction:column;justify-content:center;}
+    .ov-category{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem;}
+    .ov-category::before{content:'';display:block;width:1.25rem;height:2px;background:var(--gold);}
+    .ov-body h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.875rem;line-height:1.25;}
+    .ov-body p{font-size:.875rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem;}
+    .ov-variants{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem;}
+    .ov-tag{background:var(--royal-pale);color:var(--royal);font-size:.7rem;font-weight:600;padding:.3rem .75rem;border-radius:2rem;letter-spacing:.04em;}
+    /* All products flat list */
+    .all-products-bg{background:var(--bg-white);}
+    .all-products-header{text-align:center;max-width:600px;margin:0 auto 4rem;}
+    .all-products-header .section-divider{margin:1.25rem auto;}
+    .products-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+    .prod-img-wrap{height:220px;}
+    /* CTA strip */
+    .cta-strip{background:var(--navy);padding:4rem 2rem;position:relative;overflow:hidden;}
+    .cta-strip::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0v40' fill='none' stroke='%23ffffff' stroke-width='.4' opacity='.04'/%3E%3C/svg%3E");background-size:40px 40px;}
+    .cta-strip-inner{max-width:1280px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+    .cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;color:white;line-height:1.25;}
+    .cta-strip h2 span{color:var(--gold-light);}
+    .cta-strip p{color:rgba(255,255,255,.5);font-size:.95rem;margin-top:.5rem;}
+    @media(max-width:1024px){.overview-grid{grid-template-columns:1fr;}.products-grid-4{grid-template-columns:repeat(2,1fr);}.overview-card{grid-template-columns:1fr;}.ov-img-wrap{min-height:220px;}}
+    @media(max-width:768px){.products-grid-4{grid-template-columns:1fr 1fr;}}
+    @media(max-width:480px){.products-grid-4{grid-template-columns:1fr;}}
+  </style>
 </head>
+<body>
 
-<body class="font-sans bg-white text-gray-900 antialiased">
-
-  <!-- ════════════════════════════════════════════════════════
-       HEADER — Sticky Glassmorphism Nav
-       ════════════════════════════════════════════════════════ -->
-  <header id="main-nav" class="glass-nav fixed top-0 left-0 right-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-18 py-3">
-
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3 group" aria-label="Български Йогурт — начало">
-          <!-- Inline SVG Logo Mark -->
-          <div class="w-10 h-10 bg-royal rounded-xl flex items-center justify-center shadow-md group-hover:bg-gold transition-all duration-300">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M11 2C6.03 2 2 6.03 2 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" fill="white" opacity="0.15"/>
-              <path d="M11 4C7.13 4 4 7.13 4 11s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-4 7c0-1.5 1.8-3.5 4-3.5s4 2 4 3.5H7z" fill="white"/>
-            </svg>
-          </div>
-          <div class="leading-tight">
-            <span class="block text-royal font-serif font-700 text-lg leading-none tracking-tight">БЪЛГАРСКИ</span>
-            <span class="block text-gold font-serif font-600 text-base leading-none tracking-widest">ЙОГУРТ</span>
-          </div>
-        </a>
-
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center gap-8" aria-label="Главна навигация">
-          <a href="#products" class="text-sm font-500 text-gray-700 hover:text-royal transition-colors duration-200 tracking-wide">Продукти</a>
-          <a href="#about" class="text-sm font-500 text-gray-700 hover:text-royal transition-colors duration-200 tracking-wide">За нас</a>
-          <a href="#b2b" class="text-sm font-500 text-gray-700 hover:text-royal transition-colors duration-200 tracking-wide">Партньорство</a>
-          <a href="#contact" class="btn-nav" data-track="nav_contact">
-            Запитване за търговци
-          </a>
-        </nav>
-
-        <!-- Mobile hamburger -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
-          <svg id="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+<header id="main-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <img src="../assets/images/logo.avif" alt="Лого Български Йогурт" class="logo-img"/>
+      <div class="logo-text"><span>БЪЛГАРСКИ</span><span>ЙОГУРТ</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#about">За нас</a>
+      <a href="../index.html#process">Производство</a>
+      <div class="nav-dropdown">
+        <a href="index.html" class="active">Продукти <svg class="dd-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="dropdown-menu">
+          <a href="kiselo-mlyako.html"><img class="dm-img" src="../assets/images/kiselo-mlqko.avif" alt=""/>Кисело Мляко</a>
+          <a href="sirene.html"><img class="dm-img" src="../assets/images/krave-bqlo-sirene.avif" alt=""/>Бяло Сирене</a>
+          <a href="kashkaval.html"><img class="dm-img" src="../assets/images/bulgarski-yogurt-kashval.avif" alt=""/>Кашкавал</a>
+          <a href="maslo.html"><img class="dm-img" src="../assets/images/maslo.avif" alt=""/>Масло</a>
+          <div class="dropdown-divider"></div>
+          <a href="index.html" style="color:var(--royal);font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Всички продукти</a>
+        </div>
       </div>
+      <a href="../index.html#b2b">Партньорство</a>
+      <a href="../index.html#contact" class="btn-nav">Запитване</a>
+    </nav>
+    <button id="mobile-menu-btn" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu"><div class="mobile-links">
+    <a href="../index.html#about">За нас</a>
+    <div class="mobile-cat-label">Продукти</div>
+    <a href="kiselo-mlyako.html" style="padding-left:1.5rem;">→ Кисело Мляко</a>
+    <a href="sirene.html" style="padding-left:1.5rem;">→ Бяло Сирене</a>
+    <a href="kashkaval.html" style="padding-left:1.5rem;">→ Кашкавал</a>
+    <a href="maslo.html" style="padding-left:1.5rem;">→ Масло</a>
+    <a href="../index.html#contact" style="background:var(--royal);color:white;border-radius:.75rem;padding:.875rem 1rem;font-weight:700;text-align:center;margin-top:.5rem;">Запитване</a>
+  </div></div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb" style="margin-bottom:1.25rem;">
+      <a href="../index.html">Начало</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="current">Продукти</span>
     </div>
+    <div class="eyebrow" style="color:rgba(245,158,11,.9);"><span style="background:var(--gold);display:block;width:1.75rem;height:2px;"></span>Продуктова гама</div>
+    <h1>Всичко от <span>една мандра</span></h1>
+    <p>Четири продуктови линии, изработени с грижа и традиция от 1993 г. — 100% българско мляко, без добавки.</p>
+  </div>
+</div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-2">
-        <a href="#products" class="px-4 py-3 text-gray-700 hover:text-royal hover:bg-blue-50 rounded-xl font-500 transition-all">Продукти</a>
-        <a href="#about" class="px-4 py-3 text-gray-700 hover:text-royal hover:bg-blue-50 rounded-xl font-500 transition-all">За нас</a>
-        <a href="#b2b" class="px-4 py-3 text-gray-700 hover:text-royal hover:bg-blue-50 rounded-xl font-500 transition-all">Партньорство</a>
-        <a href="#contact" class="btn-primary justify-center mt-2" data-track="nav_contact">Запитване за търговци</a>
-      </div>
-    </div>
-  </header>
+<!-- CATEGORY OVERVIEW -->
+<section class="overview-bg" aria-label="Категории продукти">
+  <div class="section-inner">
+    <div class="overview-grid">
 
-
-  <!-- ════════════════════════════════════════════════════════
-       HERO SECTION
-       ════════════════════════════════════════════════════════ -->
-  <section class="hero-section" aria-label="Главна секция">
-    <!-- Background Image -->
-    <img
-      src="assets/images/hero.avif"
-      alt="Зелени пасища и традиционна мандра Български Йогурт"
-      class="hero-img"
-      loading="eager"
-    />
-    <div class="hero-overlay" aria-hidden="true"></div>
-
-    <!-- Content -->
-    <div class="hero-content w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 pt-40">
-      <div class="max-w-3xl">
-
-        <div class="section-label text-white/80 animate-fade-up" style="--gold: rgba(255,255,255,0.6)">
-          <span style="background: #d97706; display:block; width:2rem; height:2px;"></span>
-          От 1993 година
+      <!-- Кисело мляко -->
+      <a href="kiselo-mlyako.html" class="overview-card reveal">
+        <div class="ov-img-wrap">
+          <img src="../assets/images/krave-kiselo-mlqko.avif" alt="Кисело мляко" class="ov-img" loading="lazy"/>
         </div>
-
-        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-900 text-white leading-tight mt-4 animate-fade-up delay-100">
-          Истинският вкус.<br />
-          <span class="gold-shimmer">От 30 години насам.</span>
-        </h1>
-
-        <div class="gold-divider animate-fade-up delay-200" style="background: linear-gradient(90deg, #d97706, #f59e0b);"></div>
-
-        <p class="text-xl sm:text-2xl text-white/85 font-300 leading-relaxed max-w-2xl animate-fade-up delay-300">
-          100% българско мляко. Традиционни рецепти.<br class="hidden sm:block"/>
-          Без компромис в качеството от 1993 година.
-        </p>
-
-        <div class="flex flex-wrap gap-4 mt-10 animate-fade-up delay-400">
-          <a href="#contact" class="btn-primary" data-track="cta_partner_hero">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-            </svg>
-            Стани наш партньор
-          </a>
-          <a href="#products" class="btn-secondary" data-track="cta_products">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-            </svg>
-            Виж продуктите
-          </a>
-        </div>
-
-        <!-- Trust badges -->
-        <div class="flex flex-wrap gap-6 mt-12 animate-fade-up delay-500">
-          <div class="flex items-center gap-2 text-white/75 text-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            Традиция от 1993 г.
+        <div class="ov-body">
+          <div class="ov-category">Ферментирали продукти</div>
+          <h2>Традиционно<br/>Кисело Мляко</h2>
+          <p>Гъсто, кремообразно, с характерна свежа киселинност. Жива закваска с <em>Lactobacillus bulgaricus</em> по рецепта от 1993 г.</p>
+          <div class="ov-variants">
+            <span class="ov-tag">Краве мляко</span>
+            <span class="ov-tag">400г / 800г / 1кг</span>
+            <span class="ov-tag">Жива закваска</span>
           </div>
-          <div class="flex items-center gap-2 text-white/75 text-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            100% Местно мляко
+          <span class="prod-link" style="margin-top:0;">Виж продукта <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Сирене -->
+      <a href="sirene.html" class="overview-card reveal delay-1">
+        <div class="ov-img-wrap">
+          <img src="../assets/images/krave-bqlo-sirene.avif" alt="Бяло саламурено сирене" class="ov-img" loading="lazy"/>
+        </div>
+        <div class="ov-body">
+          <div class="ov-category">Саламурени сирена</div>
+          <h2>Бяло<br/>Саламурено Сирене</h2>
+          <p>Снежнобяло, с наситен вкус и правилна соленост. Произведено от краве или овче мляко, узряло в натурална саламура.</p>
+          <div class="ov-variants">
+            <span class="ov-tag">Краве</span>
+            <span class="ov-tag">Овче</span>
+            <span class="ov-tag">500г / 1кг / 3кг</span>
           </div>
-          <div class="flex items-center gap-2 text-white/75 text-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d97706" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            B2B Надеждни доставки
+          <span class="prod-link" style="margin-top:0;">Виж продукта <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+
+      <!-- Кашкавал -->
+      <a href="kashkaval.html" class="overview-card reveal delay-2">
+        <div class="ov-img-wrap">
+          <img src="../assets/images/bulgarski-yogurt-kashval.avif" alt="Кашкавал" class="ov-img" loading="lazy"/>
+        </div>
+        <div class="ov-body">
+          <div class="ov-category">Зрели сирена</div>
+          <h2>Кашкавал</h2>
+          <p>Наситен, маслен кашкавал с богат аромат. Дълъг процес на зреене за дълбок, характерен вкус — краве и овче.</p>
+          <div class="ov-variants">
+            <span class="ov-tag">Краве</span>
+            <span class="ov-tag">Овче</span>
+            <span class="ov-tag">300г / 1кг / 5кг</span>
           </div>
+          <span class="prod-link" style="margin-top:0;">Виж продукта <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
+      </a>
 
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2 text-white/50" aria-hidden="true">
-      <span class="text-xs tracking-widest uppercase font-500">Scroll</span>
-      <div class="w-px h-12 bg-white/30 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full bg-white/70 animate-bounce" style="height:50%; animation-duration: 1.5s;"></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════════════════════════
-       STATS BAR
-       ════════════════════════════════════════════════════════ -->
-  <section class="bg-royal py-10" aria-label="Ключови числа">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-
-        <div class="reveal">
-          <div class="stat-number"><span data-count="30">0</span>+</div>
-          <div class="text-white/70 text-sm font-500 mt-1 tracking-wide">Години опит</div>
+      <!-- Масло -->
+      <a href="maslo.html" class="overview-card reveal delay-3">
+        <div class="ov-img-wrap">
+          <img src="../assets/images/maslo-madjarsko.avif" alt="Краве масло" class="ov-img" loading="lazy"/>
         </div>
-        <div class="reveal reveal-delay-1">
-          <div class="stat-number"><span data-count="500">0</span>+</div>
-          <div class="text-white/70 text-sm font-500 mt-1 tracking-wide">B2B партньори</div>
-        </div>
-        <div class="reveal reveal-delay-2">
-          <div class="stat-number"><span data-count="4">0</span></div>
-          <div class="text-white/70 text-sm font-500 mt-1 tracking-wide">Продуктови линии</div>
-        </div>
-        <div class="reveal reveal-delay-3">
-          <div class="stat-number">100<span class="text-2xl">%</span></div>
-          <div class="text-white/70 text-sm font-500 mt-1 tracking-wide">Българско мляко</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════════════════════════
-       TRUST & HERITAGE — "The 30-Year Proof"
-       ════════════════════════════════════════════════════════ -->
-  <section id="about" class="py-24 bg-gray-50" aria-label="Доверие и наследство">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-        <div class="section-label justify-center">Доверие и Наследство</div>
-        <h2 class="font-serif text-4xl sm:text-5xl font-700 text-gray-900 mt-2 leading-tight">
-          Защо избират<br /><span class="text-royal">Български Йогурт</span>
-        </h2>
-        <div class="gold-divider mx-auto"></div>
-        <p class="text-lg text-gray-500 font-300 leading-relaxed mt-4">
-          Три десетилетия посветени на едно — да запазим автентичния вкус на България.
-        </p>
-      </div>
-
-      <!-- Three pillars -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-        <!-- Pillar 1 -->
-        <div class="trust-card reveal reveal-delay-1">
-          <div class="trust-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-            </svg>
+        <div class="ov-body">
+          <div class="ov-category">Млечни мазнини</div>
+          <h2>Краве Масло</h2>
+          <p>Пълномаслено краве масло директно от нашата мандра. Богато, кремообразно, без добавки — истинският вкус на масло.</p>
+          <div class="ov-variants">
+            <span class="ov-tag">100% Краве мляко</span>
+            <span class="ov-tag">125г / 250г</span>
+            <span class="ov-tag">Без добавки</span>
           </div>
-          <h3 class="font-serif text-xl font-700 text-gray-900 mb-3">Собствени рецепти</h3>
-          <div class="gold-divider"></div>
-          <p class="text-gray-500 font-300 leading-relaxed text-sm">
-            Запазен вкус, предаван през поколенията. Нашите рецепти са разработени от майстори-млекари и не са се променяли от 1993 г. — защото не се подобрява онова, което вече е перфектно.
-          </p>
+          <span class="prod-link" style="margin-top:0;">Виж продукта <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
-
-        <!-- Pillar 2 -->
-        <div class="trust-card reveal reveal-delay-2">
-          <div class="trust-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </div>
-          <h3 class="font-serif text-xl font-700 text-gray-900 mb-3">Родно производство</h3>
-          <div class="gold-divider"></div>
-          <p class="text-gray-500 font-300 leading-relaxed text-sm">
-            Изцяло българско краве мляко от селектирани ферми в района. Контролираме всяка стъпка — от фермата до вашата витрина. Никакви чужди суровини, никакви компромиси.
-          </p>
-        </div>
-
-        <!-- Pillar 3 -->
-        <div class="trust-card reveal reveal-delay-3">
-          <div class="trust-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <h3 class="font-serif text-xl font-700 text-gray-900 mb-3">B2B Партньорство</h3>
-          <div class="gold-divider"></div>
-          <p class="text-gray-500 font-300 leading-relaxed text-sm">
-            Надеждни и навременни доставки за магазини, ресторанти и хотели. Предлагаме гъвкави условия, редовни графици и директна комуникация с търговски представител.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Photo & Story Row -->
-      <div class="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-            <img
-              src="assets/images/process.avif"
-              alt="Производственият процес в мандрата"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <span class="inline-block bg-gold text-white text-xs font-700 tracking-widest uppercase px-3 py-1 rounded-full mb-2">Нашият процес</span>
-              <p class="text-white font-serif text-lg font-600">Традиционна технология, модерни стандарти</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal reveal-delay-2 space-y-6">
-          <div class="section-label">Нашата история</div>
-          <h2 class="font-serif text-4xl font-700 text-gray-900 leading-tight">
-            Петко Личев и<br />мандрата, която<br /><span class="text-royal">промени вкуса</span>
-          </h2>
-          <div class="gold-divider"></div>
-          <p class="text-gray-500 leading-relaxed">
-            През 1993 г. Петко Личев основава мандрата с една ясна мисия — да произвежда млечни продукти така, както са го правили дедите ни. Без бързане, без преки пътища, без компромиси.
-          </p>
-          <p class="text-gray-500 leading-relaxed">
-            Днес Български Йогурт е синоним на качество в региона, партньор на стотици търговски обекти и символ на онзи истински, неповторим вкус от детството.
-          </p>
-
-          <!-- Founder portrait -->
-          <div class="flex items-center gap-4 pt-2">
-            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-gold shadow-md flex-shrink-0">
-              <img
-                src="assets/images/petur-lichev-bulgarksi-yougurt.avif"
-                alt="Петко Личев — основател на Български Йогурт"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div>
-              <div class="font-serif font-700 text-gray-900">Петко Личев</div>
-              <div class="text-sm text-gray-400 font-300">Основател, Български Йогурт (1993)</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </a>
 
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <!-- ════════════════════════════════════════════════════════
-       PRODUCT GALLERY
-       ════════════════════════════════════════════════════════ -->
-  <section id="products" class="py-24 bg-white" aria-label="Продуктова гама">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-        <div class="section-label justify-center">Продуктова Гама</div>
-        <h2 class="font-serif text-4xl sm:text-5xl font-700 text-gray-900 mt-2 leading-tight">
-          Всичко от <span class="text-royal">една мандра</span>
-        </h2>
-        <div class="gold-divider mx-auto"></div>
-        <p class="text-lg text-gray-500 font-300 leading-relaxed mt-4">
-          Четири продуктови линии, едно неотменно качество.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Card 1: Кисело мляко -->
-        <article class="product-card reveal reveal-delay-1" data-product="Традиционно Кисело Мляко">
-          <div class="product-img-wrapper">
-            <img
-              src="assets/images/bulgarski-yogurt.avif"
-              alt="Традиционно кисело мляко Български Йогурт"
-              class="product-img"
-              loading="lazy"
-            />
-            <span class="product-badge">Бестселър</span>
-          </div>
-          <div class="product-body">
-            <h3 class="font-serif text-lg font-700 text-gray-900 mb-2">Традиционно Кисело Мляко</h3>
-            <p class="text-gray-400 text-sm font-300 leading-relaxed">
-              Истинското кисело мляко — гъсто, кремообразно, с характерна свежа киселинност. Произведено по традиционна рецепта с жива млечнокисела закваска.
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-xs text-gray-400 font-500 tracking-wide uppercase">Налично: 400г / 800г / 1кг</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2: Сирене -->
-        <article class="product-card reveal reveal-delay-2" data-product="Бяло Саламурено Сирене">
-          <div class="product-img-wrapper bg-gray-100 flex items-center justify-center">
-            <img
-              src="assets/images/bulgarski-yogurt-vitrina.avif"
-              alt="Бяло саламурено сирене"
-              class="product-img"
-              loading="lazy"
-            />
-            <span class="product-badge">Традиция</span>
-          </div>
-          <div class="product-body">
-            <h3 class="font-serif text-lg font-700 text-gray-900 mb-2">Бяло Саламурено Сирене</h3>
-            <p class="text-gray-400 text-sm font-300 leading-relaxed">
-              Класическото българско сирене — снежнобяло, с наситен вкус и правилна соленост. Узряло в натурална саламура за автентичен характер.
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-xs text-gray-400 font-500 tracking-wide uppercase">Налично: 500г / 1кг / 3кг</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 3: Кашкавал -->
-        <article class="product-card reveal reveal-delay-3" data-product="Кашкавал от Краве Мляко">
-          <div class="product-img-wrapper">
-            <img
-              src="assets/images/kashkaval.avif"
-              alt="Кашкавал от краве мляко"
-              class="product-img"
-              loading="lazy"
-            />
-            <span class="product-badge">Премиум</span>
-          </div>
-          <div class="product-body">
-            <h3 class="font-serif text-lg font-700 text-gray-900 mb-2">Кашкавал от Краве Мляко</h3>
-            <p class="text-gray-400 text-sm font-300 leading-relaxed">
-              Наситен, маслен кашкавал с богат аромат. Произведен от пълномаслено краве мляко, с дълъг процес на зреене за дълбок, характерен вкус.
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-xs text-gray-400 font-500 tracking-wide uppercase">Налично: 300г / 1кг / 5кг</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 4: Прясно мляко & Масло -->
-        <article class="product-card reveal reveal-delay-4" data-product="Прясно Мляко и Масло">
-          <div class="product-img-wrapper bg-blue-50 flex items-center justify-center overflow-hidden">
-            <!-- Decorative placeholder for product without dedicated image -->
-            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-6">
-              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="40" cy="40" r="38" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
-                <path d="M28 52V36l12-14 12 14v16H28z" fill="#1e3a8a" opacity="0.2"/>
-                <path d="M28 52V36l12-14 12 14v16H28z" stroke="#1e3a8a" stroke-width="2" stroke-linejoin="round" fill="none"/>
-                <circle cx="40" cy="44" r="4" fill="#d97706"/>
-                <path d="M24 52h32" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span class="text-royal text-xs font-700 tracking-widest uppercase mt-3 opacity-60">Прясно мляко</span>
-            </div>
-            <span class="product-badge">Нов</span>
-          </div>
-          <div class="product-body">
-            <h3 class="font-serif text-lg font-700 text-gray-900 mb-2">Прясно Мляко и Масло</h3>
-            <p class="text-gray-400 text-sm font-300 leading-relaxed">
-              Пастьоризирано пълномаслено мляко и краве масло, директно от нашата мандра. Богато, кремообразно, без добавки.
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
-              <span class="text-xs text-gray-400 font-500 tracking-wide uppercase">Мляко 1л / Масло 125г</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
+<!-- ALL PRODUCTS FLAT GRID -->
+<section class="all-products-bg" aria-label="Всички продукти">
+  <div class="section-inner">
+    <div class="all-products-header reveal">
+      <div class="eyebrow" style="justify-content:center;">Пълен асортимент</div>
+      <h2 class="section-title" style="text-align:center;">Изберете <span>вашия продукт</span></h2>
+      <div class="section-divider" style="margin:1.25rem auto;"></div>
     </div>
-  </section>
+    <div class="products-grid-4">
 
+      <a href="kiselo-mlyako.html" class="product-card reveal delay-1" data-product="Кисело мляко">
+        <div class="prod-img-wrap"><img src="../assets/images/bulgarski-yogurt.avif" alt="Кисело мляко" class="prod-img" loading="lazy"/><span class="prod-badge">Бестселър</span></div>
+        <div class="prod-body"><h3>Кисело Мляко</h3><p>Традиционна рецепта с жива закваска. 400г / 800г / 1кг.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
 
-  <!-- ════════════════════════════════════════════════════════
-       B2B CTA — "The Money Section"
-       ════════════════════════════════════════════════════════ -->
-  <section id="b2b" class="py-24 bg-navy relative overflow-hidden" aria-label="B2B партньорство">
+      <a href="sirene.html" class="product-card reveal delay-2" data-product="Бяло краве сирене">
+        <div class="prod-img-wrap"><img src="../assets/images/krave-bqlo-sirene.avif" alt="Краве сирене" class="prod-img" loading="lazy"/><span class="prod-badge">Традиция</span></div>
+        <div class="prod-body"><h3>Бяло Краве Сирене</h3><p>Саламурено, наситен вкус. 500г / 1кг / 3кг.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
 
-    <!-- Decorative background elements -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute -top-32 -right-32 w-96 h-96 bg-royal/40 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-gold/10 rounded-full blur-3xl"></div>
-      <!-- Subtle pattern -->
-      <svg class="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
+      <a href="sirene.html#ovche" class="product-card reveal delay-3" data-product="Овче сирене">
+        <div class="prod-img-wrap"><img src="../assets/images/ovche-sirene.avif" alt="Овче сирене" class="prod-img" loading="lazy"/><span class="prod-badge gold">Премиум</span></div>
+        <div class="prod-body"><h3>Бяло Овче Сирене</h3><p>По-интензивен характер, традиционна рецепта. 500г / 1кг.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+
+      <a href="kashkaval.html" class="product-card reveal delay-4" data-product="Кашкавал краве">
+        <div class="prod-img-wrap"><img src="../assets/images/bulgarski-yogurt-kashval.avif" alt="Кашкавал краве" class="prod-img" loading="lazy"/><span class="prod-badge">Традиция</span></div>
+        <div class="prod-body"><h3>Кашкавал Краве</h3><p>Маслен, наситен аромат. 300г / 1кг / 5кг.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+
+      <a href="kashkaval.html#ovche" class="product-card reveal delay-1" data-product="Кашкавал овче">
+        <div class="prod-img-wrap"><img src="../assets/images/ovche-kashkaval.avif" alt="Кашкавал овче" class="prod-img" loading="lazy"/><span class="prod-badge gold">Премиум</span></div>
+        <div class="prod-body"><h3>Кашкавал Овче</h3><p>По-богат, по-интензивен характер. 300г / 1кг.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+
+      <a href="maslo.html" class="product-card reveal delay-2" data-product="Краве масло">
+        <div class="prod-img-wrap"><img src="../assets/images/maslo.avif" alt="Краве масло" class="prod-img" loading="lazy"/><span class="prod-badge">Нов</span></div>
+        <div class="prod-body"><h3>Краве Масло</h3><p>Пълномаслено, без добавки. 125г / 250г.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+
+      <a href="maslo.html#madjarsko" class="product-card reveal delay-3" data-product="Масло Маджарско">
+        <div class="prod-img-wrap"><img src="../assets/images/maslo-madjarsko.avif" alt="Масло Маджарско" class="prod-img" loading="lazy"/><span class="prod-badge gold">Специален</span></div>
+        <div class="prod-body"><h3>Масло Маджарско</h3><p>Традиционна маджарска рецепта. 125г.</p><span class="prod-link">Виж повече <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+
+      <a href="../index.html#contact" class="product-card reveal delay-4" style="background:var(--royal-pale);border:2px dashed rgba(30,58,138,.2);">
+        <div class="prod-img-wrap" style="height:220px;background:var(--royal-pale);display:flex;align-items:center;justify-content:center;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--royal)" stroke-width="1.5" stroke-linecap="round" opacity=".4" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="prod-body" style="align-items:center;text-align:center;">
+          <h3 style="color:var(--royal);">Специална поръчка</h3>
+          <p style="color:var(--royal);opacity:.6;">Свържете се с нас за индивидуални количества и условия.</p>
+          <span class="btn-royal" style="margin-top:1.25rem;font-size:.8rem;padding:.625rem 1.25rem;">Свържи се с нас</span>
+        </div>
+      </a>
+
     </div>
+  </div>
+</section>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto reveal">
-
-        <!-- Award icon -->
-        <div class="inline-flex items-center justify-center w-16 h-16 bg-gold/20 border border-gold/30 rounded-2xl mb-8">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-          </svg>
-        </div>
-
-        <div class="section-label justify-center" style="color: #d97706;">
-          <span style="background: #d97706; display:block; width:2rem; height:2px;"></span>
-          B2B Партньорство
-        </div>
-
-        <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-700 text-white mt-4 leading-tight">
-          Заредете вашия обект с<br />
-          <span class="gold-shimmer">качеството, което</span><br />
-          клиентите търсят.
-        </h2>
-
-        <div class="gold-divider mx-auto mt-6"></div>
-
-        <p class="text-xl text-white/65 font-300 leading-relaxed mt-6 max-w-2xl mx-auto">
-          Предлагаме преференциални условия за търговски вериги, ресторанти и локални магазини. Директна връзка с търговски представител, гъвкав график, гарантирано качество.
-        </p>
-
-        <!-- Feature list -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 mb-10">
-          <div class="flex flex-col items-center gap-2 text-white/70">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12l5 5L20 7"/>
-            </svg>
-            <span class="text-sm font-500">Редовни доставки</span>
-          </div>
-          <div class="flex flex-col items-center gap-2 text-white/70">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12l5 5L20 7"/>
-            </svg>
-            <span class="text-sm font-500">Преференциални цени</span>
-          </div>
-          <div class="flex flex-col items-center gap-2 text-white/70">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12l5 5L20 7"/>
-            </svg>
-            <span class="text-sm font-500">Персонален мениджър</span>
-          </div>
-        </div>
-
-        <a href="#contact" class="btn-gold text-lg" data-track="cta_b2b_contact">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
-          </svg>
-          Свържете се с търговския ни отдел
-        </a>
-
-        <p class="text-white/35 text-sm mt-4 font-300">
-          Ще отговорим в рамките на 1 работен ден
-        </p>
-      </div>
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div>
+      <h2>Търсите <span>B2B условия?</span></h2>
+      <p>Предлагаме преференциални цени за търговски обекти, ресторанти и хотели.</p>
     </div>
-  </section>
+    <a href="../index.html#contact" class="btn-gold">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      Изпрати запитване
+    </a>
+  </div>
+</div>
 
-
-  <!-- ════════════════════════════════════════════════════════
-       CONTACT SECTION
-       ════════════════════════════════════════════════════════ -->
-  <section id="contact" class="py-24 bg-gray-50" aria-label="Контакти">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-
-        <!-- Left: Info -->
-        <div class="reveal">
-          <div class="section-label">Свържете се с нас</div>
-          <h2 class="font-serif text-4xl font-700 text-gray-900 mt-2 leading-tight">
-            Нека започнем<br /><span class="text-royal">партньорството</span>
-          </h2>
-          <div class="gold-divider"></div>
-          <p class="text-gray-500 leading-relaxed mt-4 mb-8">
-            Свържете се с нашия търговски отдел за ценова листа, условия и индивидуална оферта за вашия обект.
-          </p>
-
-          <div class="space-y-5">
-            <!-- Phone -->
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 bg-royal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-xs font-700 text-gray-400 uppercase tracking-widest mb-1">Телефон за поръчки</div>
-                <a href="tel:+359XXXXXXXXX" class="font-serif text-xl font-600 text-gray-900 hover:text-royal transition-colors">+359 XX XXX XXXX</a>
-              </div>
-            </div>
-
-            <!-- Email -->
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 bg-royal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-xs font-700 text-gray-400 uppercase tracking-widest mb-1">Имейл</div>
-                <a href="mailto:office@bulgarski-yogurt.bg" class="font-serif text-xl font-600 text-gray-900 hover:text-royal transition-colors">office@bulgarski-yogurt.bg</a>
-              </div>
-            </div>
-
-            <!-- Address -->
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 bg-royal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-xs font-700 text-gray-400 uppercase tracking-widest mb-1">Адрес на мандрата</div>
-                <address class="font-serif text-xl font-600 text-gray-900 not-italic">
-                  гр. Ямбол, България
-                </address>
-              </div>
-            </div>
-
-            <!-- Hours -->
-            <div class="flex items-start gap-4">
-              <div class="w-11 h-11 bg-royal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <div>
-                <div class="text-xs font-700 text-gray-400 uppercase tracking-widest mb-1">Работно време</div>
-                <div class="font-serif text-lg font-600 text-gray-900">Пон – Пет: 08:00 – 17:00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Contact Form -->
-        <div class="reveal reveal-delay-2">
-          <div class="bg-white rounded-2xl shadow-card border border-gray-100 p-8">
-            <h3 class="font-serif text-2xl font-700 text-gray-900 mb-6">Изпратете запитване</h3>
-
-            <div class="space-y-5">
-              <div>
-                <label for="company" class="block text-xs font-700 text-gray-500 uppercase tracking-widest mb-2">Фирма / Обект</label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  placeholder="Магазин Слънце ЕООД"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-royal focus:ring-2 focus:ring-royal/10 transition-all"
-                />
-              </div>
-              <div>
-                <label for="name" class="block text-xs font-700 text-gray-500 uppercase tracking-widest mb-2">Вашето име</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Иван Иванов"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-royal focus:ring-2 focus:ring-royal/10 transition-all"
-                />
-              </div>
-              <div>
-                <label for="phone" class="block text-xs font-700 text-gray-500 uppercase tracking-widest mb-2">Телефон</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="+359 88 XXX XXXX"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-royal focus:ring-2 focus:ring-royal/10 transition-all"
-                />
-              </div>
-              <div>
-                <label for="message" class="block text-xs font-700 text-gray-500 uppercase tracking-widest mb-2">Съобщение</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  placeholder="Опишете нуждите на вашия обект — продукти, количества, честота на доставка..."
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-royal focus:ring-2 focus:ring-royal/10 transition-all resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="button"
-                onclick="handleFormSubmit()"
-                class="btn-primary w-full justify-center py-4 text-base"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-                Изпрати запитване
-              </button>
-
-              <p class="text-xs text-gray-400 text-center font-300">
-                Ще се свържем с вас в рамките на 1 работен ден.
-              </p>
-            </div>
-          </div>
-        </div>
-
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../assets/images/logo.avif" alt="Лого"/><div class="footer-logo-text"><span>БЪЛГАРСКИ ЙОГУРТ</span><span>От 1993 година</span></div></div>
+        <p>Традиционни млечни продукти от сърцето на България. 100% местно краве мляко, три десетилетия качество.</p>
       </div>
+      <div class="footer-col"><h4>Продукти</h4><ul>
+        <li><a href="kiselo-mlyako.html">Кисело Мляко</a></li>
+        <li><a href="sirene.html">Бяло Сирене</a></li>
+        <li><a href="kashkaval.html">Кашкавал</a></li>
+        <li><a href="maslo.html">Масло</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>За нас</h4><ul>
+        <li><a href="../index.html#about">История</a></li>
+        <li><a href="../index.html#process">Производство</a></li>
+        <li><a href="../index.html#b2b">B2B</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Контакти</h4><ul>
+        <li><a href="tel:+359XXXXXXXXX">+359 XX XXX XXXX</a></li>
+        <li><a href="mailto:office@bulgarski-yogurt.bg">office@bulgarski-yogurt.bg</a></li>
+        <li><a href="../index.html#contact">гр. Ямбол</a></li>
+      </ul></div>
     </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════════════════════════
-       FOOTER
-       ════════════════════════════════════════════════════════ -->
-  <footer class="bg-navy text-white" aria-label="Футър">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-
-        <!-- Brand -->
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-10 h-10 bg-royal rounded-xl flex items-center justify-center">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M11 2C6.03 2 2 6.03 2 11s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" fill="white" opacity="0.15"/>
-                <path d="M11 4C7.13 4 4 7.13 4 11s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm-4 7c0-1.5 1.8-3.5 4-3.5s4 2 4 3.5H7z" fill="white"/>
-              </svg>
-            </div>
-            <div>
-              <div class="font-serif font-700 text-lg text-white leading-none">БЪЛГАРСКИ ЙОГУРТ</div>
-              <div class="text-gold text-xs tracking-widest font-500 uppercase">От 1993 година</div>
-            </div>
-          </div>
-          <p class="text-white/50 font-300 text-sm leading-relaxed max-w-sm">
-            Традиционни млечни продукти от сърцето на България. 100% местно краве мляко, проверени рецепти, три десетилетия качество.
-          </p>
-        </div>
-
-        <!-- Products -->
-        <div>
-          <h4 class="font-serif font-700 text-white mb-4 text-sm uppercase tracking-widest">Продукти</h4>
-          <ul class="space-y-3 text-white/50 text-sm font-300">
-            <li><a href="#products" class="hover:text-gold transition-colors">Традиционно Кисело Мляко</a></li>
-            <li><a href="#products" class="hover:text-gold transition-colors">Бяло Саламурено Сирене</a></li>
-            <li><a href="#products" class="hover:text-gold transition-colors">Кашкавал от Краве Мляко</a></li>
-            <li><a href="#products" class="hover:text-gold transition-colors">Прясно Мляко и Масло</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div>
-          <h4 class="font-serif font-700 text-white mb-4 text-sm uppercase tracking-widest">Контакти</h4>
-          <ul class="space-y-3 text-white/50 text-sm font-300">
-            <li>
-              <a href="tel:+359XXXXXXXXX" class="hover:text-gold transition-colors flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-                +359 XX XXX XXXX
-              </a>
-            </li>
-            <li>
-              <a href="mailto:office@bulgarski-yogurt.bg" class="hover:text-gold transition-colors flex items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                office@bulgarski-yogurt.bg
-              </a>
-            </li>
-            <li class="flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              гр. Ямбол, България
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/30 text-xs font-300">
-        <p>© <span id="year"></span> Български Йогурт. Всички права запазени.</p>
-        <p>
-          Built by
-          <a href="https://ginkogrudev.com" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors font-600">
-            GG Solutions 🐷
-          </a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-
-  <!-- ════════════════════════════════════════════════════════
-       SCRIPTS
-       ════════════════════════════════════════════════════════ -->
-  <script src="js/main.js"></script>
-  <script src="js/analytics.js"></script>
-
-  <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Form submit placeholder
-    function handleFormSubmit() {
-      const company = document.getElementById('company').value;
-      const name    = document.getElementById('name').value;
-      const phone   = document.getElementById('phone').value;
-
-      if (!name || !phone) {
-        alert('Моля, попълнете поне вашето име и телефон.');
-        return;
-      }
-
-      // Track conversion
-      if (typeof gtag === 'function') {
-        gtag('event', 'form_submit_contact', {
-          event_category: 'conversion',
-          event_label: `${company} — ${name}`,
-        });
-      }
-
-      alert('Благодарим! Ще се свържем с вас до 1 работен ден.');
-    }
-  </script>
-
+    <div class="footer-bottom"><p>© <span id="year"></span> Български Йогурт. Всички права запазени.</p><p>Built by <a href="https://ginkogrudev.com" target="_blank" rel="noopener">GG Solutions 🐷</a></p></div>
+  </div>
+</footer>
+<script src="../js/shared.js"></script>
+<script src="../js/analytics.js"></script>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="bg" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Традиционно кисело мляко Български Йогурт — гъсто, кремообразно, с жива закваска Lactobacillus bulgaricus. 100% българско краве мляко."/>
+  <title>Кисело Мляко — Български Йогурт</title>
+  <link rel="icon" type="image/avif" href="../assets/images/favicon.avif"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/shared.css"/>
+  <style>
+    .page-hero{background:var(--royal);padding:7rem 2rem 4rem;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 5L35 25H55L39 37L45 57L30 45L15 57L21 37L5 25H25Z' fill='%23ffffff' opacity='.04'/%3E%3C/svg%3E");background-size:60px 60px;}
+    .page-hero-inner{max-width:1280px;margin:0 auto;position:relative;}
+    .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:white;margin:.75rem 0;line-height:1.1;}
+    .page-hero h1 span{color:var(--gold-light);}
+    .page-hero p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:48ch;margin-top:.75rem;font-weight:300;line-height:1.7;}
+    /* Product detail layout */
+    .product-detail-bg{background:var(--bg-off);}
+    .product-detail{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .product-images{display:flex;flex-direction:column;gap:1rem;}
+    .main-product-img{border-radius:var(--r-card);overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-lg);}
+    .main-product-img img{width:100%;height:100%;object-fit:cover;}
+    .thumb-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;}
+    .thumb{border-radius:1rem;overflow:hidden;aspect-ratio:1;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+    .thumb:hover,.thumb.active{border-color:var(--royal);}
+    .thumb img{width:100%;height:100%;object-fit:cover;}
+    /* Product info */
+    .product-info{}
+    .product-info .eyebrow{margin-bottom:.75rem;}
+    .product-name{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;color:var(--text);line-height:1.1;margin-bottom:.75rem;}
+    .product-tagline{font-size:1.1rem;color:var(--text-muted);font-weight:300;line-height:1.7;margin-bottom:2rem;}
+    .product-attributes{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;}
+    .attr-card{background:white;border-radius:1rem;padding:1.25rem 1rem;text-align:center;border:1px solid rgba(30,58,138,.08);box-shadow:var(--shadow-sm);}
+    .attr-icon{width:36px;height:36px;background:var(--royal-pale);border-radius:.625rem;display:flex;align-items:center;justify-content:center;margin:0 auto .625rem;}
+    .attr-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:.25rem;}
+    .attr-value{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--text);}
+    /* Sizes */
+    .sizes-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:.75rem;}
+    .sizes-row{display:flex;flex-wrap:wrap;gap:.625rem;margin-bottom:2rem;}
+    .size-chip{padding:.5rem 1.25rem;border-radius:2rem;border:2px solid rgba(30,58,138,.15);font-size:.85rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;}
+    .size-chip:hover,.size-chip.active{border-color:var(--royal);background:var(--royal-pale);color:var(--royal);}
+    /* CTA row */
+    .product-cta{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-bottom:2rem;}
+    /* Nutrition / ingredients */
+    .detail-tabs{display:flex;gap:0;border-bottom:2px solid rgba(30,58,138,.08);margin-bottom:2rem;}
+    .tab-btn{padding:.875rem 1.5rem;font-size:.875rem;font-weight:600;color:var(--text-light);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;}
+    .tab-btn.active{color:var(--royal);border-bottom-color:var(--royal);}
+    .tab-panel{display:none;}.tab-panel.active{display:block;}
+    .ingredient-list{font-size:.9rem;color:var(--text-muted);line-height:1.8;}
+    .nutrition-table{width:100%;border-collapse:collapse;font-size:.875rem;}
+    .nutrition-table th{text-align:left;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);padding:.625rem .875rem;border-bottom:1px solid rgba(30,58,138,.08);}
+    .nutrition-table td{padding:.625rem .875rem;border-bottom:1px solid rgba(30,58,138,.06);color:var(--text-muted);}
+    .nutrition-table td:last-child{font-weight:600;color:var(--text);}
+    .nutrition-table tr:last-child td{border-bottom:none;}
+    /* Related */
+    .related-bg{background:var(--bg-white);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .prod-img-wrap{height:200px;}
+    /* CTA strip */
+    .cta-strip{background:var(--navy);padding:4rem 2rem;position:relative;overflow:hidden;}
+    .cta-strip::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0v40' fill='none' stroke='%23ffffff' stroke-width='.4' opacity='.04'/%3E%3C/svg%3E");background-size:40px 40px;}
+    .cta-strip-inner{max-width:1280px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+    .cta-strip h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;color:white;line-height:1.25;}
+    .cta-strip h2 span{color:var(--gold-light);}
+    .cta-strip p{color:rgba(255,255,255,.5);font-size:.95rem;margin-top:.5rem;}
+    @media(max-width:1024px){.product-detail{grid-template-columns:1fr;gap:3rem;}.related-grid{grid-template-columns:1fr 1fr;}.product-attributes{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:768px){.product-attributes{grid-template-columns:1fr 1fr;}.related-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header id="main-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><img src="../assets/images/logo.avif" alt="Лого" class="logo-img"/><div class="logo-text"><span>БЪЛГАРСКИ</span><span>ЙОГУРТ</span></div></a>
+    <nav class="nav-links">
+      <a href="../index.html#about">За нас</a>
+      <a href="../index.html#process">Производство</a>
+      <div class="nav-dropdown">
+        <a href="index.html" class="active">Продукти <svg class="dd-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="dropdown-menu">
+          <a href="kiselo-mlyako.html" style="color:var(--royal);font-weight:600;"><img class="dm-img" src="../assets/images/kiselo-mlqko.avif" alt=""/>Кисело Мляко</a>
+          <a href="sirene.html"><img class="dm-img" src="../assets/images/krave-bqlo-sirene.avif" alt=""/>Бяло Сирене</a>
+          <a href="kashkaval.html"><img class="dm-img" src="../assets/images/bulgarski-yogurt-kashval.avif" alt=""/>Кашкавал</a>
+          <a href="maslo.html"><img class="dm-img" src="../assets/images/maslo.avif" alt=""/>Масло</a>
+          <div class="dropdown-divider"></div>
+          <a href="index.html" style="color:var(--royal);font-weight:600;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Всички продукти</a>
+        </div>
+      </div>
+      <a href="../index.html#b2b">Партньорство</a>
+      <a href="../index.html#contact" class="btn-nav">Запитване</a>
+    </nav>
+    <button id="mobile-menu-btn" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu"><div class="mobile-links">
+    <a href="../index.html#about">За нас</a>
+    <div class="mobile-cat-label">Продукти</div>
+    <a href="kiselo-mlyako.html" style="padding-left:1.5rem;color:var(--royal);font-weight:600;">→ Кисело Мляко</a>
+    <a href="sirene.html" style="padding-left:1.5rem;">→ Бяло Сирене</a>
+    <a href="kashkaval.html" style="padding-left:1.5rem;">→ Кашкавал</a>
+    <a href="maslo.html" style="padding-left:1.5rem;">→ Масло</a>
+    <a href="../index.html#contact" style="background:var(--royal);color:white;border-radius:.75rem;padding:.875rem 1rem;font-weight:700;text-align:center;margin-top:.5rem;">Запитване</a>
+  </div></div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb" style="margin-bottom:1.25rem;">
+      <a href="../index.html">Начало</a><span class="breadcrumb-sep">/</span>
+      <a href="index.html">Продукти</a><span class="breadcrumb-sep">/</span>
+      <span class="current">Кисело Мляко</span>
+    </div>
+    <div class="eyebrow" style="color:rgba(245,158,11,.9);"><span style="background:var(--gold);display:block;width:1.75rem;height:2px;"></span>Ферментирали продукти</div>
+    <h1>Традиционно <span>Кисело Мляко</span></h1>
+    <p>Гъсто, кремообразно, с жива закваска — рецептата, запазена непроменена от 1993 година.</p>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<section class="product-detail-bg" aria-label="Детайли за продукта">
+  <div class="section-inner">
+    <div class="product-detail">
+
+      <!-- Images -->
+      <div class="product-images reveal">
+        <div class="main-product-img" id="main-img-wrap">
+          <img id="main-img" src="../assets/images/krave-kiselo-mlqko.avif" alt="Традиционно кисело мляко" loading="eager"/>
+        </div>
+        <div class="thumb-row">
+          <div class="thumb active" onclick="switchImg('../assets/images/krave-kiselo-mlqko.avif', this)"><img src="../assets/images/krave-kiselo-mlqko.avif" alt="" loading="lazy"/></div>
+          <div class="thumb" onclick="switchImg('../assets/images/kiselo-mlqko.avif', this)"><img src="../assets/images/kiselo-mlqko.avif" alt="" loading="lazy"/></div>
+          <div class="thumb" onclick="switchImg('../assets/images/bulgarski-yogurt.avif', this)"><img src="../assets/images/bulgarski-yogurt.avif" alt="" loading="lazy"/></div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="reveal delay-2">
+        <div class="eyebrow">Български Йогурт</div>
+        <h1 class="product-name">Кисело Мляко<br/><span style="font-size:60%;color:var(--text-muted);font-weight:400;">Традиционна рецепта</span></h1>
+        <p class="product-tagline">Произведено от 100% прясно краве мляко от местни ферми. Ферментирало с жива закваска <em>Lactobacillus bulgaricus</em> — гордостта на България. Без стабилизатори, без добавки.</p>
+
+        <div class="product-attributes">
+          <div class="attr-card">
+            <div class="attr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--royal)" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+            <div class="attr-label">Вид мляко</div>
+            <div class="attr-value">Краве</div>
+          </div>
+          <div class="attr-card">
+            <div class="attr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--royal)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="attr-label">Зреене</div>
+            <div class="attr-value">12–14 ч.</div>
+          </div>
+          <div class="attr-card">
+            <div class="attr-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--royal)" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div class="attr-label">Закваска</div>
+            <div class="attr-value">Жива</div>
+          </div>
+        </div>
+
+        <div class="sizes-label">Налично тегло</div>
+        <div class="sizes-row">
+          <div class="size-chip active">400 г</div>
+          <div class="size-chip">800 г</div>
+          <div class="size-chip">1 кг</div>
+          <div class="size-chip">B2B — по заявка</div>
+        </div>
+
+        <div class="product-cta">
+          <a href="../index.html#contact" class="btn-royal">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Запитване за цена
+          </a>
+          <a href="index.html" class="btn-outline-royal">← Всички продукти</a>
+        </div>
+
+        <!-- Tabs -->
+        <div class="detail-tabs">
+          <button class="tab-btn active" onclick="switchTab('ingredients', this)">Съставки</button>
+          <button class="tab-btn" onclick="switchTab('nutrition', this)">Хранителна стойност</button>
+          <button class="tab-btn" onclick="switchTab('storage', this)">Съхранение</button>
+        </div>
+        <div id="tab-ingredients" class="tab-panel active">
+          <p class="ingredient-list"><strong>Съставки:</strong> Прясно пастьоризирано краве мляко 100%, жива млечнокисела закваска (<em>Lactobacillus bulgaricus, Streptococcus thermophilus</em>).<br/><br/><strong>Алергени:</strong> Мляко и млечни продукти.<br/><br/>Без консерванти. Без стабилизатори. Без изкуствени оцветители.</p>
+        </div>
+        <div id="tab-nutrition" class="tab-panel">
+          <table class="nutrition-table">
+            <tr><th>Хранителна стойност</th><th>на 100 г</th></tr>
+            <tr><td>Енергийна стойност</td><td>240 kJ / 58 kcal</td></tr>
+            <tr><td>Мазнини</td><td>3.2 г</td></tr>
+            <tr><td>— от които наситени</td><td>2.1 г</td></tr>
+            <tr><td>Въглехидрати</td><td>4.5 г</td></tr>
+            <tr><td>— от които захари</td><td>4.5 г</td></tr>
+            <tr><td>Белтъчини</td><td>3.8 г</td></tr>
+            <tr><td>Сол</td><td>0.1 г</td></tr>
+            <tr><td>Калций</td><td>120 mg (15% ДПС)</td></tr>
+          </table>
+        </div>
+        <div id="tab-storage" class="tab-panel">
+          <p class="ingredient-list"><strong>Условия за съхранение:</strong> Съхранявайте при температура от 0°C до +6°C. Да не се замразява.<br/><br/><strong>Срок на годност:</strong> 21 дни при правилно съхранение.<br/><br/><strong>След отваряне:</strong> Консумирайте в рамките на 3 дни.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="related-bg" aria-label="Свързани продукти">
+  <div class="section-inner">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="eyebrow">Разгледайте още</div>
+      <h2 class="section-title">Другите ни <span>продукти</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="related-grid">
+      <a href="sirene.html" class="product-card reveal delay-1">
+        <div class="prod-img-wrap"><img src="../assets/images/krave-bqlo-sirene.avif" alt="Сирене" class="prod-img" loading="lazy"/><span class="prod-badge">Традиция</span></div>
+        <div class="prod-body"><h3>Бяло Сирене</h3><p>Саламурено краве или овче сирене — наситен вкус.</p><span class="prod-link">Виж продукта <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="kashkaval.html" class="product-card reveal delay-2">
+        <div class="prod-img-wrap"><img src="../assets/images/bulgarski-yogurt-kashval.avif" alt="Кашкавал" class="prod-img" loading="lazy"/><span class="prod-badge">Традиция</span></div>
+        <div class="prod-body"><h3>Кашкавал</h3><p>Зрял, маслен кашкавал с богат аромат.</p><span class="prod-link">Виж продукта <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a href="maslo.html" class="product-card reveal delay-3">
+        <div class="prod-img-wrap"><img src="../assets/images/maslo.avif" alt="Масло" class="prod-img" loading="lazy"/><span class="prod-badge">Нов</span></div>
+        <div class="prod-body"><h3>Краве Масло</h3><p>Пълномаслено, без добавки — богато и кремообразно.</p><span class="prod-link">Виж продукта <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div><h2>Търсите <span>B2B условия?</span></h2><p>Преференциални цени за обемни поръчки и редовни доставки.</p></div>
+    <a href="../index.html#contact" class="btn-gold">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.8-1.81a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      Свържи се с нас
+    </a>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-grid">
+  <div class="footer-brand"><div class="footer-logo"><img src="../assets/images/logo.avif" alt="Лого"/><div class="footer-logo-text"><span>БЪЛГАРСКИ ЙОГУРТ</span><span>От 1993 година</span></div></div><p>Традиционни млечни продукти от сърцето на България.</p></div>
+  <div class="footer-col"><h4>Продукти</h4><ul><li><a href="kiselo-mlyako.html">Кисело Мляко</a></li><li><a href="sirene.html">Бяло Сирене</a></li><li><a href="kashkaval.html">Кашкавал</a></li><li><a href="maslo.html">Масло</a></li></ul></div>
+  <div class="footer-col"><h4>За нас</h4><ul><li><a href="../index.html#about">История</a></li><li><a href="../index.html#process">Производство</a></li><li><a href="../index.html#b2b">B2B</a></li></ul></div>
+  <div class="footer-col"><h4>Контакти</h4><ul><li><a href="tel:+359XXXXXXXXX">+359 XX XXX XXXX</a></li><li><a href="mailto:office@bulgarski-yogurt.bg">office@...</a></li><li><a href="../index.html#contact">гр. Ямбол</a></li></ul></div>
+</div><div class="footer-bottom"><p>© <span id="year"></span> Български Йогурт.</p><p>Built by <a href="https://ginkogrudev.com" target="_blank" rel="noopener">GG Solutions 🐷</a></p></div></div></footer>
+
+<script src="../js/shared.js"></script>
+<script src="../js/analytics.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  function switchImg(src, thumb) {
+    document.getElementById('main-img').src = src;
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+  document.querySelectorAll('.size-chip').forEach(c => c.addEventListener('click', function() {
+    document.querySelectorAll('.size-chip').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  }));
+</script>
+</body>
+</html>
