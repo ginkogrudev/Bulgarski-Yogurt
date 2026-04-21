@@ -1,0 +1,345 @@
+/* ============================================
+   БЪЛГАРСКИ ЙОГУРТ — Custom CSS
+   GG Solutions | css/custom.css
+   ============================================ */
+
+/* ── Fonts ────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+/* ── CSS Variables ────────────────────────── */
+:root {
+  --royal-blue:   #1e3a8a;
+  --royal-dark:   #172d6e;
+  --royal-light:  #2d4fb5;
+  --gold:         #ffffff;;
+  --gold-light:   #f59e0b;
+  --gold-dark:    #b45309;
+  --navy:         #0f172a;
+  --white:        #ffffff;
+  --gray-50:      #f9fafb;
+  --gray-100:     #f3f4f6;
+  --text-primary: #111827;
+  --text-muted:   #6b7280;
+
+  --shadow-soft:  0 4px 24px rgba(30, 58, 138, 0.08);
+  --shadow-card:  0 8px 40px rgba(30, 58, 138, 0.12);
+  --shadow-glow:  0 0 40px rgba(217, 119, 6, 0.25);
+
+  --radius-card:  1.25rem;
+  --radius-btn:   0.75rem;
+
+  --transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Base ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Glassmorphism Nav ────────────────────── */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+  transition: var(--transition);
+}
+
+.glass-nav.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ── Buttons ──────────────────────────────── */
+.btn-primary {
+  background: var(--royal-blue);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid transparent;
+}
+.btn-primary:hover {
+  background: var(--gold);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 2px solid rgba(255,255,255,0.6);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: white;
+  padding: 1.125rem 2.5rem;
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.025em;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 2px solid transparent;
+}
+.btn-gold:hover {
+  background: var(--gold-light);
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.4);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-nav {
+  background: var(--royal-blue);
+  color: white;
+  padding: 0.625rem 1.375rem;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: var(--transition);
+}
+.btn-nav:hover {
+  background: var(--gold);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ── Hero ─────────────────────────────────── */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.72) 0%,
+    rgba(30, 58, 138, 0.55) 50%,
+    rgba(15, 23, 42, 0.40) 100%
+  );
+  z-index: 1;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Trust Cards ──────────────────────────── */
+.trust-card {
+  background: white;
+  border-radius: var(--radius-card);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(30, 58, 138, 0.06);
+  transition: var(--transition);
+  text-align: center;
+}
+.trust-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(30, 58, 138, 0.15);
+}
+
+.trust-icon {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, var(--royal-blue), var(--royal-light));
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+/* ── Product Cards ────────────────────────── */
+.product-card {
+  background: white;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(30, 58, 138, 0.06);
+  transition: var(--transition);
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(30, 58, 138, 0.18);
+}
+.product-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.product-img-wrapper {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: var(--gray-100);
+}
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--gold);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+}
+
+.product-body {
+  padding: 1.75rem;
+}
+
+/* ── Section Labels ───────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ── Stat Numbers ─────────────────────────── */
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--gold);
+}
+
+/* ── Animations ───────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fade-up  { animation: fadeInUp  0.8s cubic-bezier(0.4,0,0.2,1) both; }
+.animate-fade-left{ animation: fadeInLeft 0.8s cubic-bezier(0.4,0,0.2,1) both; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Intersection Observer — hidden until visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Gold shimmer text ────────────────────── */
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Divider ──────────────────────────────── */
+.gold-divider {
+  width: 4rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 1.25rem 0;
+}
+
+/* ── Mobile Menu ──────────────────────────── */
+#mobile-menu {
+  display: none;
+}
+#mobile-menu.open {
+  display: block;
+}
+
+/* ── Responsive Tweaks ────────────────────── */
+@media (max-width: 768px) {
+  .stat-number { font-size: 2.5rem; }
+  .hero-section { min-height: 90vh; }
+}
